@@ -27,3 +27,8 @@ export function addToCart(productId){
         )
     }
 }
+export function removeFromeCart(productId){
+    const index = cart.findIndex(item => item.productId === productId);
+    if (index !== -1) cart.splice(index, 1);
+
+}
