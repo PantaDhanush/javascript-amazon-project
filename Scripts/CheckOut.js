@@ -1,4 +1,4 @@
-import { cart, removeFromeCart, updateQuantity } from "../data/cart.js";
+import { cart, removeFromeCart, updateQuantity,updateDeliveryOption } from "../data/cart.js";
 import { products } from "../data/products.js";
 import formatCurrency  from "./Utils/Money.js";
 import { totalItemsInCart } from "./Utils/ItemsInCart.js";
@@ -78,7 +78,8 @@ function deliveryOptionsHTML(product,cartItem){
         const priceString=deliveryOption.priceCents===0?'FREE ':`$${formatCurrency(deliveryOption.priceCents)} -`;
         const isChecked=deliveryOption.id===cartItem.deliveryOptionsId;
         html+=`
-        <div class="delivery-option">
+        <div class="delivery-option js-delivery-option"
+        data-product-id="${product.id}" data-delivery-option-id="${deliveryOption.id}">
             <input type="radio" ${isChecked?'checked':''}
                 class="delivery-option-input"
                 name="delivery-option-${product.id}">
@@ -128,7 +129,7 @@ document.querySelectorAll('.js-update-link')
 //save
 document.querySelectorAll('.js-save-link')
   .forEach((link) => {
-    link.addEventListener('click', (event) => {
+    link.addEventListener('click', () => {
         const {productId}=link.dataset;
         const container=document.querySelector(`.js-cart-item-container-${productId}`);
         const newQuantity=Number(document.querySelector(`.js-quantity-input-${productId}`).value);
@@ -142,3 +143,13 @@ document.querySelectorAll('.js-save-link')
         updateCartQuantityInCartPage();
     });
   });
+
+
+//
+document.querySelectorAll('.js-delivery-option')
+  .forEach((element)=>{
+    element.addEventListener('click',()=>{
+        const {productId,deliveryOptionId}=element.dataset;
+        updateDeliveryOption(productId,deliveryOptionId);
+    })
+  })
