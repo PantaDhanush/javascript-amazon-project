@@ -1,7 +1,7 @@
 import { cart,addToCart} from "../data/cart.js";
 import { products } from "../data/products.js"; 
 import { totalItemsInCart } from "./Utils/ItemsInCart.js";
-import { formatCurrency } from "./Utils/Money.js";
+import formatCurrency from "./Utils/Money.js";
 let total='';
 products.forEach((product)=>{
     total+=`
