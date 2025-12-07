@@ -24,6 +24,7 @@
   width: 30px;
 }
 
+
 .save-quantity-link,.quantity-input{
   display: none;
 }
@@ -36,7 +37,7 @@
 .is-editing-quantity .quantity-label{
   display: none;
 }
-.is-editing-quantity .js-update-text{
+.is-editing-quantity .js-update-link{
   display: none;
 }
 

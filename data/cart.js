@@ -7,7 +7,7 @@ export let cart=JSON.parse(localStorage.getItem('cart'))||[
         quantity:1
     }
 ];
-function saveToStorage(){
+export function saveToStorage(){
     localStorage.setItem('cart',JSON.stringify(cart));
 }
 export function addToCart(productId){
@@ -33,5 +33,11 @@ export function addToCart(productId){
 export function removeFromeCart(productId){
     const index = cart.findIndex(item => item.productId === productId);
     if (index !== -1) cart.splice(index, 1);
+    saveToStorage();
+}
+
+export function updateQuantity(productId,newQuantity){
+    const matchingItem = cart.find(item => item.productId === productId);
+    matchingItem.quantity=newQuantity;
     saveToStorage();
 }
