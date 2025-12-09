@@ -78,6 +78,8 @@ const tshirt=new Clothing({
     type: "clothing",
     sizeChartLink: "images/clothing-size-chart.png"
   });
+const date=new Date();
+console.log(date.toLocaleTimeString());
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
